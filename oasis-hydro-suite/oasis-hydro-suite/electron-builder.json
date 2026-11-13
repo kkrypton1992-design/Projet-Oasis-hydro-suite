@@ -1,0 +1,76 @@
+{
+  "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
+  "appId": "com.oasishydro.suite",
+  "productName": "OASIS HYDRO SUITE",
+  "copyright": "Copyright © 2026 OASIS HYDRO SUITE",
+  "asar": true,
+  "asarUnpack": ["electron/dist/**/*"],
+  "directories": {
+    "output": "release",
+    "buildResources": "electron/resources"
+  },
+  "files": [
+    "dist/**/*",
+    "electron/**/*",
+    "config/default.json",
+    "package.json",
+    "!node_modules/**/*"
+  ],
+  "extraResources": [
+    {
+      "from": "electron/dist/sql-wasm.wasm",
+      "to": "sql-wasm.wasm"
+    },
+    {
+      "from": "electron/dist/default.json",
+      "to": "default.json"
+    }
+  ],
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": ["x64"]
+      },
+      {
+        "target": "portable",
+        "arch": ["x64"]
+      }
+    ],
+    "icon": "electron/resources/icon.ico",
+    "executableName": "oasis-hydro-suite",
+    "publisherName": "OASIS HYDRO SUITE Engineering",
+    "legalTrademarks": "OASIS HYDRO SUITE",
+    "fileAssociations": [
+      {
+        "ext": "oasis.json",
+        "name": "OASIS Hydro Project",
+        "description": "Fichier de projet d'ingénierie hydrologique OASIS",
+        "role": "Editor"
+      }
+    ]
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "allowElevation": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "OASIS HYDRO SUITE",
+    "installerIcon": "electron/resources/icon.ico",
+    "uninstallerIcon": "electron/resources/icon.ico",
+    "installerLanguages": ["fr_FR", "en_US"],
+    "deleteAppDataOnUninstall": false,
+    "runAfterFinish": true
+  },
+  "linux": {
+    "target": ["AppImage"],
+    "icon": "electron/resources/icon.png",
+    "category": "Engineering"
+  },
+  "publish": {
+    "provider": "github",
+    "owner": "kkrypton1992-design",
+    "repo": "Projet-Oasis-hydro-suite"
+  }
+}
